@@ -17,7 +17,6 @@ def homepage(request):
 def notespage(request, pk):
     note = Notes.objects.get(id=pk)
     dict = {'note': note}
-    print(note)
     return render(request, 'base/notespage.html', dict)
 
 
@@ -57,7 +56,7 @@ def addBookmark(request, pk):
     Note.bookmark = 1
     Note.save()
     Note = Notes.objects.all()
-    return redirect('MyNotes')
+    return redirect('home')
 
 
 def deleteBookmark(request, pk):
@@ -65,15 +64,10 @@ def deleteBookmark(request, pk):
     Note.bookmark = 0
     Note.save()
     Note = Notes.objects.all()
-    return redirect('MyNotes')
+    return redirect('home')
 
 
 def viewbookmarks(request):
     Note = Notes.objects.all()
-    myFilter = OrderFilter(request.GET, queryset=Note)
-    Note = myFilter.qs
-    searchResult = request.GET.get('search-area') or ''
-    if searchResult:
-        Note = Note.filter(title__icontains=searchResult)
-    context = {'Note': Note, 'myFilter': myFilter}
-    return render(request, 'base/bookmarks.html', context)
+    dict = {'Note': Note}
+    return render(request, 'base/bookmark.html', dict)
