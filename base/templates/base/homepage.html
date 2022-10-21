@@ -14,11 +14,10 @@
             font-size:.5em;
             color:grey;
        }
-       .delete{
-            position: relative;
-            right: -10%;
+       button{
             font-size: 1em;
        }
+
 
 </style>
 
@@ -26,14 +25,22 @@
 {% block content %}
 <div>
 
-    <a href="{% url 'newnote' %}" class="link">+ create new</a>
+    <span><a href="{% url 'newnote' %}" class="link">+ create new</a></span>
+    <span><a href="{% url 'viewbookmarks' %} " class="btn create book">Bookmarks</a></span>
     <div>
         {% for i in notes %}
         <div class="notesblock">
             <a href="{% url 'notes' i.id %}">{{i.title}}</a>
-            <p>last edited : {{i.lastedit}} <a href="{% url 'delete' i.id %}" class="link delete">DELETE</a></p>
+            <p>last edited : {{i.lastedit}}</p>
+             <a href="{% url 'delete' i.id %}" class="link button">DELETE</a>
+            {%if i.bookmark == 0 %}
+            <a href="{% url 'addBookmark' i.id%}" class="'button">Add to Bookmarks</a>
+            {%else%}
+            <a href="{% url 'deleteBookmark' i.id%}" class="button">Added</a>
+            {%endif%}
         </div>
         {% endfor %}
     </div>
+
 </div>
 {% endblock %}

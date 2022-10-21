@@ -1,0 +1,40 @@
+<h1>Bookmarks</h1>
+<div class="container">
+  <div class="Notes">
+    <a href="{{request.META.HTTP_REFERER}}" class="btn back">GO BACK</a>
+    <a href="{% url 'createNotes' %} " class="btn create">Create a Note</a>
+
+    <div>
+      <form method="GET" action="">
+        {{myFilter.form}}
+        <button type="submit" class="btn">search</button>
+      </form>
+    </div>
+
+    <div>
+      <form method="GET">
+        <input type="text" name="search-area" />
+        <input type="submit" value="Search" class="btn" />
+      </form>
+    </div>
+
+    <hr />
+
+    {% for notes in Note %}
+    <div>
+      {%if notes.bookmark == 1 %}
+      <p>
+        Created on : <strong>{{ notes.created }}</strong>||Last updated on :
+        <strong>{{ notes.updated}}</strong>
+      </p>
+      <p>Category : <strong>{{notes.category}}</strong></p>
+      <li class="details">{{ notes.title }}</li>
+      <a href="{% url 'viewNote' notes.id %}" class="btn view">View</a>
+      <a href="{% url 'deleteNotes' notes.id %}" class="btn del">Delete</a>
+      <a href="{% url 'updateNotes' notes.id%}" class="btn edit">Edit</a>
+      {%endif%}
+    </div>
+
+    {% endfor %}
+  </div>
+</div>

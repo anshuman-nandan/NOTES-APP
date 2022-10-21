@@ -44,9 +44,36 @@ def modifiednote(request, pk):
     return render(request, 'base/notesform.html', dict)
 
 
-def deletenote(request,pk):
-    note=Notes.objects.get(id=pk)
-    if request.method=='POST':
+def deletenote(request, pk):
+    note = Notes.objects.get(id=pk)
+    if request.method == 'POST':
         note.delete()
         return redirect('home')
-    return render (request, 'base/delete.html', {'obj':note})
+    return render(request, 'base/delete.html', {'obj': note})
+
+
+def addBookmark(request, pk):
+    Note = Notes.objects.get(id=pk)
+    Note.bookmark = 1
+    Note.save()
+    Note = Notes.objects.all()
+    return redirect('MyNotes')
+
+
+def deleteBookmark(request, pk):
+    Note = Notes.objects.get(id=pk)
+    Note.bookmark = 0
+    Note.save()
+    Note = Notes.objects.all()
+    return redirect('MyNotes')
+
+
+def viewbookmarks(request):
+    Note = Notes.objects.all()
+    myFilter = OrderFilter(request.GET, queryset=Note)
+    Note = myFilter.qs
+    searchResult = request.GET.get('search-area') or ''
+    if searchResult:
+        Note = Note.filter(title__icontains=searchResult)
+    context = {'Note': Note, 'myFilter': myFilter}
+    return render(request, 'base/bookmarks.html', context)
