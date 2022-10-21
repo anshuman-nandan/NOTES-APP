@@ -1,0 +1,17 @@
+<style>
+        .notespage{
+            text-align: left;
+            font-size: 2em;
+        }
+
+        h1{
+            font-size: 3.5em !important;
+        }
+</style>
+
+{% extends 'main.html' %}
+{% block content %}
+<h1 class="notespage">{{note.title}}</h1>
+<hr>
+<p class="notespage">{{note.description}}</p>
+{% endblock %}

@@ -1,0 +1,24 @@
+<style>
+    .notesblock {
+            width: 50vw;
+            border: 1px solid white;
+            margin: 1%;
+            border-radius: 10px;
+            margin-left: 25vw;
+            font-size: 2em;
+        }
+</style>
+
+{% extends 'main.html' %}
+{% block content %}
+<div>
+    <a href="{% url 'newnote' %}">+ create new</a>
+    <div>
+        {% for i in notes %}
+        <div class="notesblock">
+            <a href="{% url 'notes' i.id %}">{{i.title}}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
