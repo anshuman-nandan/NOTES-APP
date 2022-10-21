@@ -7,12 +7,17 @@
             margin-left: 25vw;
             font-size: 2em;
         }
-       #new{
+       .link{
             color: red;
        }
-       p{
+       p{  
             font-size:.5em;
             color:grey;
+       }
+       .delete{
+            position: relative;
+            right: -10%;
+            font-size: 1em;
        }
 
 </style>
@@ -21,12 +26,12 @@
 {% block content %}
 <div>
 
-    <a href="{% url 'newnote' %}" id="new">+ create new</a>
+    <a href="{% url 'newnote' %}" class="link">+ create new</a>
     <div>
         {% for i in notes %}
         <div class="notesblock">
             <a href="{% url 'notes' i.id %}">{{i.title}}</a>
-            <p>last edited : {{i.lastedit}}</p>
+            <p>last edited : {{i.lastedit}} <a href="{% url 'delete' i.id %}" class="link delete">DELETE</a></p>
         </div>
         {% endfor %}
     </div>

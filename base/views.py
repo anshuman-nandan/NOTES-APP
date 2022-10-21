@@ -40,3 +40,10 @@ def modifiednote(request, pk):
             return redirect('home')
     dict = {'form': form}
     return render(request, 'base/notesform.html', dict)
+
+def deletenote(request,pk):
+    note=Notes.objects.get(id=pk)
+    if request.method=='POST':
+        note.delete()
+        return redirect('home')
+    return render (request, 'base/delete.html', {'obj':note})
