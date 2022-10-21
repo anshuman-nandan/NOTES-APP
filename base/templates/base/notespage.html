@@ -1,4 +1,9 @@
 <style>
+
+        div{
+            display:flex;
+            justify-content:space-between;
+        }
         .notespage{
             text-align: left;
             font-size: 2em;
@@ -7,11 +12,19 @@
         h1{
             font-size: 3.5em !important;
         }
+
+        span a{
+            color: red;
+        }
+
 </style>
 
 {% extends 'main.html' %}
 {% block content %}
-<h1 class="notespage">{{note.title}}</h1>
+<div>
+    <h1 class="notespage">{{note.title}}</h1>
+    <span><a href="{% url 'modifiednote' note.id %}">EDIT</a></span>
+</div>
 <hr>
 <p class="notespage">{{note.description}}</p>
 {% endblock %}

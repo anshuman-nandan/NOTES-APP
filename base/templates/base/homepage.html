@@ -7,16 +7,26 @@
             margin-left: 25vw;
             font-size: 2em;
         }
+       #new{
+            color: red;
+       }
+       p{
+            font-size:.5em;
+            color:grey;
+       }
+
 </style>
 
 {% extends 'main.html' %}
 {% block content %}
 <div>
-    <a href="{% url 'newnote' %}">+ create new</a>
+
+    <a href="{% url 'newnote' %}" id="new">+ create new</a>
     <div>
         {% for i in notes %}
         <div class="notesblock">
             <a href="{% url 'notes' i.id %}">{{i.title}}</a>
+            <p>last edited : {{i.lastedit}}</p>
         </div>
         {% endfor %}
     </div>
