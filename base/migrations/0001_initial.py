@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name='Notes',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=50)),
+                ('title', models.CharField(max_length=20)),
                 ('description', models.TextField(blank=True, null=True)),
                 ('lastedit', models.DateTimeField(auto_now=True)),
                 ('saved', models.DateTimeField(auto_now_add=True)),
