@@ -30,5 +30,6 @@
     <span><a href="{% url 'modifiednote' note.id %}">EDIT</a></span>
 </div>
 <hr>
+<img src="{{ note.picture.url }}" alt="picture" style="width: 300px; height: 300px">
 <p class="notespage">{{note.description}}</p>
 {% endblock %}

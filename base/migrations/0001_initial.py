@@ -18,7 +18,6 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=20)),
                 ('description', models.TextField(blank=True, null=True)),
                 ('lastedit', models.DateTimeField(auto_now=True)),
-                ('saved', models.DateTimeField(auto_now_add=True)),
             ],
         ),
     ]
