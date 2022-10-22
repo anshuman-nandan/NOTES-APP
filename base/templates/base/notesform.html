@@ -1,4 +1,40 @@
 <style>
+    label {
+        font-size: 2em;
+        color: red;
+    }
+
+    label:nth-of-type(2) {
+        display: block;
+    }
+
+    #id_title {
+        width: 70vw;
+        font-size: 2em;
+    }
+
+    #id_description {
+        font-size: 1.5em;
+        width: 90vw;
+        height: 50vh;
+    }
+
+    div {
+        margin-top: 2%;
+    }
+
+    div:nth-of-type(4) {
+        display: none;
+    }
+
+    input{
+        font-size: 1.5em;
+    }
+    #butt{
+        background-color: red;
+        margin: 1.5%;
+        border-radius: 10px;
+    }
 </style>
 {% extends 'main.html' %}
 
@@ -6,8 +42,8 @@
 <div>
     <form enctype="multipart/form-data" method="POST" action="">
         {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Add">
+        {{form.as_div}}
+        <input type="submit" value="SAVE" id="butt">
     </form>
 </div>
 {% endblock %}
