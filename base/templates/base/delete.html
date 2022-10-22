@@ -1,15 +1,18 @@
 <style>
     p {
-        font-size: 2em;
+        font-size: 3em;
     }
 
     input {
-        font-size: 1.5em;
+        color: red;
     }
 
-    input,
-    a {
-        color: red;
+    .option {
+        font-size: 2em;
+    }
+
+    form{
+        margin-top: 15%;
     }
 </style>
 
@@ -19,8 +22,8 @@
 <form action="" method="POST">
     {% csrf_token %}
     <p>{{obj}} will be deleted permanantly</p>
-    <a href="{{request.META.HTTP_REFERER}}">Cancel</a>
-    <input type="submit" value="Proceed" />
+    <a href="{{request.META.HTTP_REFERER}}" class="option">Cancel</a>
+    <input type="submit" value="Proceed" class="option" />
 
 </form>
 

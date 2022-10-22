@@ -1,14 +1,44 @@
-<h1>Bookmarks</h1>
-<div class="container">
-  <div class="Notes">
+<style>
+    .notesblock {
+        width: 50vw;
+        border: 1px solid white;
+        margin: 1%;
+        border-radius: 10px;
+        margin-left: 25vw;
+        font-size: 2em;
+    }
 
+    h1 {
+        font-size: 5em;
+        margin: 0;
+    }
+
+    #title {
+        font-size: 1.5em;
+    }
+
+    .button{
+        display: block;
+        font-size: .75em;
+        color: red;
+    }
+</style>
+
+{% extends 'main.html' %}
+{% block content %}
+<h1>BOOKMARKED</h1>
+<div>
     {% for notes in Note %}
-    <div>
-      {%if notes.bookmark == 1 %}
-      <li class="details">{{ notes.title }}</li>
-      {%endif%}
+    {%if notes.bookmark == 1 %}
+    <div class="notesblock">
+        <a href="{% url 'notes' notes.id %}" id="title">{{notes.title}}</a>
+        {%if i.bookmark != 0 %}
+        <a href="{% url 'deleteBookmark' notes.id%}" class="button">remove from bookmarks</a>
+        {%endif%}
     </div>
+    {%endif%}
 
     {% endfor %}
-  </div>
+
 </div>
+{% endblock %}

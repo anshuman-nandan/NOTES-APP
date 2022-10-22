@@ -1,16 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Notes
 from .forms import notesform
-import os
-
-
-# from django.http import HttpResponse
 
 
 def homepage(request):
     notes = Notes.objects.all()
     dict = {'notes': notes}
-    # return HttpResponse('homepage')
     return render(request, 'base/homepage.html', dict)
 
 
